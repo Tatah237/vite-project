@@ -7,28 +7,62 @@ function Hello({ name }) {
   )
 }
 function App() {
-  const [name, setName] = useState("John")
-  const [anotherName, setAnotherName] = useState("");
-
-  const handleChangeName = () => {
-    setName(anotherName);
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [gender, setGender] = useState("")
+  const [userInfor, setUserInfor] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+  })
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
   };
-  const handleInputChange = (e) => {
-    setAnotherName(e.target.value);
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
   };
-
+  const handleGender = (e) => {
+    setGender(e.target.value);
+  };
+  const logUserInfor = e => {
+    e.preventDefault()
+    console.log(userInfor)
+  }
   return (
-  <div>
-    <Hello name={name} />
     <div>
-      <input onChange={handleInputChange}
-        value={anotherName}
-        type="text"
-        placeholder="Input Name"
-      />
+      <div>
+        <p>User Infor</p>
+        <form action="" onSubmit={logUserInfor}>
+          <input
+            onChange={handleFirstName}
+            value={firstName}
+            type="text"
+            placeholder="Input First Name"
+          />
+          <br />
+          <input
+            onChange={handleLastName}
+            value={lastName}
+            type="text"
+            placeholder="Input Last Name"
+          />
+          <br />
+          <input
+            onChange={handleGender}
+            value={gender}
+            type='text'
+            placeholder='Input Gender'
+          />
+          <br />
+          <button type='submit'>submit</button>
+        </form>
       </div>
-      <button onClick={handleChangeName}>Change Name</button>
+      <div>
+        <p>Firs tName: {firstName}</p>
+        <p>Last Name:  {lastName}</p>
+        <p>Gender:{gender}</p>
+      </div>
     </div>
-    );
+  );
 }
 export default App
